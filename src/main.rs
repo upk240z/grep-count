@@ -15,14 +15,19 @@ fn main() {
     let mut expression: String = "".to_string();
 
     loop {
-        match opts.next().transpose().unwrap() {
-            None => break,
-            Some(opt) => match opt {
-                Opt('e', Some(s)) => {
-                    expression = s;
-                },
-                _ => unreachable!(),
+        if let Ok(option) = opts.next().transpose() {
+            match option {
+                None => break,
+                Some(opt) => match opt {
+                    Opt('e', Some(s)) => {
+                        expression = s;
+                    },
+                    _ => unreachable!(),
+                }
             }
+        } else {
+            eprintln!("{}", usage);
+            process::exit(0);
         }
     }
 
