@@ -1,7 +1,9 @@
 # Grep count
 
-* example
+* examples
 
   ```bash
   cargo run -- -e "(Android\s\d+)" files...
+  cargo run -- -e "(Android\s[0-9.]+)" files...
+  cargo run -- -e "(iPhone OS [0-9_]+)" files...
   ```
