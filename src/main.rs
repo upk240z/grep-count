@@ -45,12 +45,14 @@ fn main() {
     let mut counter = GrepCounter::new(&expression, files);
     let collected = counter.scan();
 
-    let mut max_len = 0;
+    let mut max_len = 6;
     for (key, _val) in collected {
         if max_len < key.len() {
             max_len = key.len();
         }
     }
+
+    println!("{}: ----------", lpad(" files", max_len, '-'));
 
     for (key, val) in collected {
         println!("{}: {}", lpad(key, max_len, ' '), val);
