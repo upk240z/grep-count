@@ -54,15 +54,20 @@ impl GrepCounter {
                 continue;
             };
 
-            if cap.len() >= 2 {
-                let Some(m) = cap.get(1) else {
-                    eprintln!("capture error: {}", line);
-                    continue;
-                };
-                let key = m.as_str().to_string();
-                let current = self.dict.get(&key).unwrap_or(&0);
-                self.dict.insert(key, current + 1);
-            }
+            let index = if cap.len() > 1 {
+                1
+            } else {
+                0
+            };
+
+            let Some(m) = cap.get(index) else {
+                eprintln!("capture error: {}", line);
+                continue;
+            };
+
+            let key = m.as_str().to_string();
+            let current = self.dict.get(&key).unwrap_or(&0);
+            self.dict.insert(key, current + 1);
         }
 
         println!("OK");
