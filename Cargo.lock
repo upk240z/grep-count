@@ -19,7 +19,7 @@ checksum = "9f3699253a5e0cc57029e178afc29b4655531d95f20301aba488064fc08fc47a"
 
 [[package]]
 name = "grep-count"
-version = "0.9.0"
+version = "0.9.1"
 dependencies = [
  "getopt",
  "regex",
